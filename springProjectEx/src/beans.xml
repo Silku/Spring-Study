@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<bean id="helloSpring" class="chapter1.HelloSpring">
+		<property name="message" value="Hello_Spring!gg"></property>		
+	</bean>
+	<bean id="battery1" class="chapter2.Battery">
+		<constructor-arg name ="batteryName" value="생성자로 만든 배터리1"></constructor-arg>
+	</bean>
+	<bean id="battery2" class="chapter2.Battery">
+		<property name="batteryName" value="세터로 만든 배터리2"></property>
+	</bean>
+	
+	<bean id ="blackPhone" class="chapter2.BlackPhone">
+		<constructor-arg ref="battery2"></constructor-arg>
+	</bean>
+	
+	<!-- 일단 내가 이해할려고 쓰는 내용 : property쓸때는 name있어야되고 constructor-arg쓸때는 name 필요없다. -->
+		
+</beans>
