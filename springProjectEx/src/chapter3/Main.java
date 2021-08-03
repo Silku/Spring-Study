@@ -24,6 +24,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *Proxy: Advice가 적용되었을때 만들어지는 객체
  *Weaving: Advice를 핵심로직에 적용하는 것.
  *
+ *
+ *
+ *Before : 메소드 실행전에 동작
+ *After - After Returning : 메소드가 성공적으로 리턴되면 동작
+ *After - After Throwing : 메소드 싱행 중 예외가 발생하면 동작(try catch에서 catch문과 같은 동작)
+ *After - After : 메소드 실행 후 무조건 동작(finally와 같은 동작)
+ *Around 메소드 실행 전후에 처리되는 로직을 삽입하여 동작.
+ *본 소스코드에서 ItemTarget메소드가 곧 before after around의 기준이됨.
  */
 
 public class Main {

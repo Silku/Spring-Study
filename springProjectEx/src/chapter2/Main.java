@@ -6,8 +6,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-		BlackPhone blackPhone = (BlackPhone)context.getBean("blackPhone");
-		blackPhone.show();
+		Phone Phone = (Phone)context.getBean("Phone");
+		Phone.show();
 	}
 	
 	public static void main2(String[] args) {
