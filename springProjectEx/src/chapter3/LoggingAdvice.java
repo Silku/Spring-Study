@@ -13,13 +13,13 @@ public class LoggingAdvice {
 		System.out.println("$$$$아이템을 구매해 주셔서 감사합니다. $$$$");
 	}
 	//관점3
-	public void aroundAdvice(ProceedingJoinPoint joinpoint) throws Throwable{
+	public void aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable{
 //		ProceedingJoinPoint joinpoint 이거는 정의되있는거임
 		//추가로직(before)
-		Signature method = joinpoint.getSignature();
+		Signature method = joinPoint.getSignature();
 		System.out.println("&&내가 실행한 메소드:::" + method.getName());
 		// 메소드를 실행하는 부분
-		joinpoint.proceed(); 
+		joinPoint.proceed(); 
 		//추가로직(after)
 		if("buyGoods".equals(method.getName())) {
 			System.out.println("Goods를 구매해주셔서 감사합니다.");
