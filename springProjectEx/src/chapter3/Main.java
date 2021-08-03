@@ -30,8 +30,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *After - After Returning : 메소드가 성공적으로 리턴되면 동작
  *After - After Throwing : 메소드 싱행 중 예외가 발생하면 동작(try catch에서 catch문과 같은 동작)
  *After - After : 메소드 실행 후 무조건 동작(finally와 같은 동작)
- *Around 메소드 실행 전후에 처리되는 로직을 삽입하여 동작.
+ *Around : 메소드 실행 전후에 처리되는 로직을 삽입하여 동작.
  *본 소스코드에서 ItemTarget메소드가 곧 before after around의 기준이됨.
+ *
+ *PointCut 표현식 
+ *execution : public * chapter3.ItemTarget.*()
+ *public: 접근제한자(public만 지원하므로 생략가능)
+ * 첫번째 *는 리턴타입 (모든 리턴타입을 허용하겠다.)
+ * chapter3 : 패키지경로
+ * ItemTarget : 클래스명(*Target, *lmpl 등 *키워드 사용가능) *를 사용하면 모든 클래스를 의미
+ * *() : 모든 메소드 (get*() -> get으로 시작하는 모든 메소드, set*() -> set으로 시작하는 모든 메소드)
+ * (int , int), (String)
+ * (**) -> 매개변수가 하나이면서 모든 타입의 매개변수에 적용
+ * (..) -> 매개변수의 개수 상관없이 모든 타입의 매개변수에 적용
+ *
+ *
  */
 
 public class Main {
@@ -39,7 +52,10 @@ public class Main {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		ItemTarget itemTarget = (ItemTarget)context.getBean("itemTarget");
+		GoodsTarget goodsTarget = (GoodsTarget)context.getBean("goodsTarget");
 		itemTarget.selectItem();
+		itemTarget.buyItem();
+		goodsTarget.buyGoods();
 		System.out.println();
 	}
 
