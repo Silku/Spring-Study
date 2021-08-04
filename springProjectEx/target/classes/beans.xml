@@ -28,7 +28,7 @@
 		<aop:aspect ref ="loggingAdvice">
 		<aop:before method="beforeAdvice" pointcut="execution(* chapter3.ItemTarget.*())"/>
 		<aop:after method="afterAdvice" pointcut="execution(* chapter3.ItemTarget.buy*(..))"/>
-		<aop:around method="aroundAdvice" pointcut="execution(* chapter3.*Target.buy*(..))"/>
+		 <aop:around method="aroundAdvice" pointcut="execution(* chapter3.*Target.buy*(..))"/> 
 		</aop:aspect>
 	</aop:config>
 	
