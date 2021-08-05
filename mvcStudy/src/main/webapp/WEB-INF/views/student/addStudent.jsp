@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="styleSheet" href="css/addStudent.css">      
+<head>  
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -36,7 +35,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="pwd">
+				<td>
 					당신의 유출된 비밀번호입니다.
 				</td>
 				<td>

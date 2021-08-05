@@ -1,0 +1,51 @@
+========================
+cmder , sourcetree 활용
+========================
+git init
+
+git config --global user.name
+git config --global user.email
+git config --list
+
+
+cd c:\
+c드라이브로 이동 , 
+뒤에 경로명 더 붙여서 응용가능
+
+
+git status
+깃 상태 확인 명령어
+ 
+echo abcd > a.txt 
+abcd라는 내용을 담은 a.txt 파일을 생성
+
+
+git add a.txt
+a.txt라는 파일을 스테이지
+
+git rm --cached a.txt
+a.txt라는 파일을 언스테이지
+
+
+git add *  또는  git add -A
+현재 폴더의 모든 파일을 스테이지
+
+git add *.txt
+txt확장자만 스테이지 하겠다.
+
+
+
+================================
+git commit -m "커밋할 내용"
+
+
+git branch 
+
+git branch 새로운 브랜치명
+
+git checkout 새로운 브랜치명
+
+
+
+git remote
+
