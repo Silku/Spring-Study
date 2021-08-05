@@ -5,55 +5,68 @@ public class Student {
 	private String id; //학번
 	private String name; //이름
 	private String phone; //전화번호
+	private String pwd;
 	
-	public Student() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Student(int seq, String id, String name, String phone) {
-		super();
-		this.seq = seq;
-		this.id = id;
-		this.name = name;
-		this.phone = phone;
-	}
+public Student() {
+	// TODO Auto-generated constructor stub
+}
 
-	public int getSeq() {
-		return seq;
-	}
 
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
+public Student(int seq, String id, String name, String phone, String pwd) {
+	super();
+	this.seq = seq;
+	this.id = id;
+	this.name = name;
+	this.phone = phone;
+	this.pwd = pwd;
+}
 
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+public int getSeq() {
+	return seq;
+}
 
-	public String getName() {
-		return name;
-	}
+public void setSeq(int seq) {
+	this.seq = seq;
+}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+public String getId() {
+	return id;
+}
 
-	public String getPhone() {
-		return phone;
-	}
+public void setId(String id) {
+	this.id = id;
+}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+public String getName() {
+	return name;
+}
 
-	@Override
-	public String toString() {
-		return "Student [seq=" + seq + ", id=" + id + ", name=" + name + ", phone=" + phone + "]";
-	}
-	
+public void setName(String name) {
+	this.name = name;
+}
+
+public String getPhone() {
+	return phone;
+}
+
+public void setPhone(String phone) {
+	this.phone = phone;
+}
+
+public String getPwd() {
+	return pwd;
+}
+
+public void setPwd(String pwd) {
+	this.pwd = pwd;
+}
+
+@Override
+public String toString() {
+	return "Student [seq=" + seq + ", id=" + id + ", name=" + name + ", phone=" + phone + ", pwd=" + pwd + "]";
+}
+ 
+
 	
 }
