@@ -26,6 +26,21 @@
 	
 	<context:component-scan base-package="com.spring.mvc" />
 	
+
+	<!--
+	위에있는 컴포넌트 스캔이 컨트롤러에 있는 StudentDAO studentDAO;라고 명명된 new없는 희한한 문법의 객체를 생성하는 역할을 담당.
+	아래의 소스코드를를 위에 있는 context:component-scan....의 코드한줄이 아래의 id = studentDao를 생성함. 
+	그리고 dao.stuentDAO에 있는 어노테이션 autowired 부분에서 아래 소스코드를 실행해주는 역할을 함.
+	<beans:bean id ="studentDao" class="com.spring.mvc.dao.StudentDAO">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+	</beans:bean>
+	 -->
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name ="driverClassName" value="org.gjt.mm.mysql.Driver"></beans:property>
+		<beans:property name ="url" value="jdbc:mysql://localhost:3306/springstudy?serverTimezone=UTC"></beans:property>
+		<beans:property name ="username" value="root"></beans:property>
+		<beans:property name ="password" value="1234"></beans:property>
+	</beans:bean>
 	
 	
 </beans:beans>

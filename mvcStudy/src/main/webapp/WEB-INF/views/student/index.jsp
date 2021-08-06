@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>학생 정보 등록 </h1>
+	<h1>학생 정보 등록</h1>
 	<form:form method="post" action ="/student/addStudent" commandName="student">
 	<!-- 태그라이브러리/form안에있는 form기능을 쓰겠다 -->
 		<table>
