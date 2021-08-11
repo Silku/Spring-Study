@@ -12,7 +12,6 @@ public class DiEx2 implements DiContext{
 	private String number;
 	
 
-
 	@Override
 	public String diConnection() {
 		return "성명: " + name + " 주민번호: " + number;

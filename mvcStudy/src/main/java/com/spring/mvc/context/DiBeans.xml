@@ -9,7 +9,7 @@
 		어노테이션을 활용해서 DI하는 방법
 		xml파일에 추가하여야하는 소스코드
 		<context:annotation-config/>
-		@Autowired
+		@Autowired -> ref
 			- 속성 [@autowired(required = false)] 주일될 빈이 없을 경우에 Null로 자동처리
 		@Qualifier("bean의 이름")
 		
@@ -48,12 +48,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
-	<context:component-scan base-package="com.spring.mvc.context"></context:component-scan>
+	<context:component-scan base-package="com.spring.mvc.context"/>
 	
 	<!-- <context:annotation-config/>  
 	component-scan을 사용할시 어노테이션 컨피그는 자동적용 되어있다. 
 	따라서 지워줘도 상관없음.
 	-->
+	
 	<!--  
 	<bean id="diex" class="com.spring.mvc.context.DiEx1">
 
@@ -75,5 +76,5 @@
 		 <property name = "diex" ref="diex2"></property>
 	</bean>
 	
-		-->
+	-->
 </beans>
