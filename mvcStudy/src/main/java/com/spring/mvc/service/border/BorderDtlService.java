@@ -20,6 +20,7 @@ public class BorderDtlService {
 		
 		BorderBean borderBean = borderDAO.getBorderDtl(i_border_code);
 		BorderBean borderBean_pre = borderDAO.getPreBoderCode(i_border_code);
+		BorderBean borderBean_next = borderDAO.getNextBoderCode(i_border_code);
 		model.setBorder_title(borderBean.getBorder_title());
 		model.setBorder_date(borderBean.getBorder_date());
 		model.setWriter_name(borderBean.getWriter_name());
@@ -28,6 +29,8 @@ public class BorderDtlService {
 		model.setBorder_content(borderBean.getBorder_content());
 		model.setBorder_code_pre(borderBean_pre.getBorder_code());
 		model.setBorder_title_pre(borderBean_pre.getBorder_title());
+		model.setBorder_code_next(borderBean_next.getBorder_code());
+		model.setBorder_title_next(borderBean_next.getBorder_title());
 		return model;
 				
 	}

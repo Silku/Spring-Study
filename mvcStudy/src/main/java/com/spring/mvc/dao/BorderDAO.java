@@ -97,5 +97,22 @@ public class BorderDAO {
 		return borderBean;
 				
 	}
+	public BorderBean getNextBoderCode(int border_code) {
+		String sql = "select border_code, border_title from border_mst where border_code =" 
+					+"(select min(border_code) from border_mst where border_code > ?)";
+		BorderBean borderBean = jdbcTemplate.queryForObject(sql, new Object[] {border_code},
+				//query와 , queryForObject의 차이 query는 컬럼에 있는 데이터 다 들고 오고 ForObject는 오브젝트 하나만 가지고옴
+			new RowMapper<BorderBean>() {
+			@Override
+			public BorderBean mapRow(ResultSet rs, int rowNum) throws SQLException {
+				BorderBean bean = new BorderBean();
+				bean.setBorder_code(rs.getInt(1));
+				bean.setBorder_title(rs.getString(2));
+				return bean;
+			};
+		});
+		return borderBean;
+				
+	}
 }
 
