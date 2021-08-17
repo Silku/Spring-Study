@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.mvc.dao.LoginDAO;
 import com.spring.mvc.model.LoginModel;
-import com.spring.mvc.model.UserBean;
+import com.spring.mvc.model.beans.UserBean;
 import com.spring.mvc.service.LoginService;
 
 @Controller
@@ -49,10 +49,20 @@ public class LoginController {
 			ModelAndView mavLoginSuccess = new ModelAndView("/index");
 			UserBean userbean = loginDAO.getUserBean(loginModel);
 			session.setAttribute("loginUserBean", userbean);
+			System.out.println("상태확인 : 로그인성공 " +"'"+ userbean.getUser_name()+"'");
 			return mavLoginSuccess;
 		}else {
 			ModelAndView mavLoginFailure = new ModelAndView("/login/login");
+			System.out.println("상태확인 : 로그인실패 ");
 			return mavLoginFailure;
 		}
 	}
+	@RequestMapping(value ="/logout", method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		ModelAndView view = new ModelAndView("/index");
+		return view;
+	}
+	
 }

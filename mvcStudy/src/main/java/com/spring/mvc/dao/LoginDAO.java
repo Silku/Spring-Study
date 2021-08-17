@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.spring.mvc.model.LoginModel;
-import com.spring.mvc.model.UserBean;
+import com.spring.mvc.model.beans.UserBean;
 
 @Repository
 public class LoginDAO {
@@ -49,7 +49,7 @@ public class LoginDAO {
 				bean.setUser_pwd(rs.getString(2));
 				bean.setUser_name(rs.getString(3));
 				bean.setUser_birthday(rs.getString(4));
-				return null;
+				return bean;
 			}
 		});
 		return userBean;
