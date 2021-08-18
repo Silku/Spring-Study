@@ -1,9 +1,12 @@
 package com.spring.mvc.service.border;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.mvc.dao.BorderDAO;
+import com.spring.mvc.dao.MyBatisBorderDAO;
 import com.spring.mvc.model.BorderDtlModel;
 import com.spring.mvc.model.beans.BorderBean;
 
@@ -11,14 +14,19 @@ import com.spring.mvc.model.beans.BorderBean;
 public class BorderDtlService {
 	
 	@Autowired
-	BorderDAO borderDAO;
+	private BorderDAO borderDAO;
+	
+	@Autowired
+	private MyBatisBorderDAO myBatisBorderDAO;
+
 	
 	public BorderDtlModel getBorderDtlModel(String border_code) {
 		int i_border_code = Integer.parseInt(border_code);
 		
 		BorderDtlModel model = new BorderDtlModel();
 		
-		BorderBean borderBean = borderDAO.getBorderDtl(i_border_code);
+//		BorderBean borderBean = borderDAO.getBorderDtl(i_border_code);
+		BorderBean borderBean = myBatisBorderDAO.getBorderDtl(i_border_code);
 		BorderBean borderBean_pre = borderDAO.getPreBoderCode(i_border_code);
 		BorderBean borderBean_next = borderDAO.getNextBoderCode(i_border_code);
 		model.setBorder_title(borderBean.getBorder_title());

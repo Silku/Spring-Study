@@ -42,6 +42,16 @@
 		<beans:property name ="password" value="1234"></beans:property>
 	</beans:bean>
 	
-	
-	
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name ="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="mapperLocations" value="classpath:mappers/*"></beans:property>
+										<!--앞으로는 src/main/resources/mappers 폴더에 mapper파일들을 넣는다 -->
+	</beans:bean>
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg ref="sqlSessionFactory"></beans:constructor-arg>
+		<!-- sql세션템플릿은 property는(세터는 사용불가능하고) 생성자 주입만 가능하다 -->
+	</beans:bean>
+	<beans:bean class = "org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<beans:property name="basePackage" value="com.spring.mvc.dao"></beans:property>
+	</beans:bean>	
 </beans:beans>
