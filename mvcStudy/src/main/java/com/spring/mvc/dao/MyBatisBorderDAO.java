@@ -7,5 +7,6 @@ import com.spring.mvc.model.beans.BorderBean;
 public interface MyBatisBorderDAO {
 	public List<BorderBean> getBorderList();
 	public BorderBean getBorderDtl(int border_code);
+	public Integer insertBorder(BorderBean borderBean);
 	
 }

@@ -1,4 +1,4 @@
-package com.spring.mvc.dao.study;
+package com.spring.study.dao;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.spring.mvc.mapper.study.StudentMapper;
-import com.spring.mvc.model.study.Student;
+import com.spring.study.mapper.StudentMapper;
+import com.spring.study.model.Student;
 
 @Component
 public class StudentDAO {

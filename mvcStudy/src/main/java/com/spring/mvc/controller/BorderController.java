@@ -1,9 +1,12 @@
 package com.spring.mvc.controller;
 
+import java.io.IOException;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +19,7 @@ import com.spring.mvc.model.BorderInsertModel;
 import com.spring.mvc.model.BorderListModel;
 import com.spring.mvc.model.beans.BorderBean;
 import com.spring.mvc.service.border.BorderDtlService;
+import com.spring.mvc.service.border.BorderInsertService;
 import com.spring.mvc.service.border.BorderListSet;
 /*
  * 게시판 콘트롤러
@@ -26,6 +30,9 @@ public class BorderController {
 	@Autowired
 	BorderListSet borderListSet;
 	//서비스가 개입했으므로 DAO는 컨트롤러랑 바로 연결되지않음 
+	
+	@Autowired
+	BorderInsertService borderInsertService;
 	
 	@Autowired
 	BorderDtlService borderDtlService;
@@ -61,15 +68,23 @@ public class BorderController {
 	@RequestMapping(value = "/borderinsert", method = RequestMethod.GET)
 	public ModelAndView borderInsert() {
 		ModelAndView view = new ModelAndView("/border/borderinsert");
+		
 		return view;
 	}
 
-	@RequestMapping(value = "/borderdatainsert", method = RequestMethod.POST)
-	public ModelAndView borderDataInsert(BorderInsertModel borderInsertModel , HttpServletRequest request) {
+	@RequestMapping(value = "/borderdatainsert", method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ModelAndView borderDataInsert(BorderInsertModel borderInsertModel, HttpServletRequest request) throws IllegalStateException, IOException {
 		ModelAndView view = new ModelAndView("/border/border");
-		borderInsertModel.setUser_ip(request.getRemoteAddr());
+		System.out.println(borderInsertModel.getUser_name());
+		borderInsertModel.setUser_ip(request.getRemoteHost());
+		String realPath = request.getRealPath("/Spring study/upload");
+		borderInsertService.fileUpload(borderInsertModel);
+//		borderInsertModel.setUser_ip(request.getRemoteAddr());
+//		borderDAO.insertBorder(borderInsertModel);
 		
-		borderDAO.insertBorder(borderInsertModel);
+//		String originalFile = borderInsertModel.getFile().getOriginalFilename();
+//		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+		
 		return view;
 	}
 	@RequestMapping(value = "/borderdtl", method = RequestMethod.GET)

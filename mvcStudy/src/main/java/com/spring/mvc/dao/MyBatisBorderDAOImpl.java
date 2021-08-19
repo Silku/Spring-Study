@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.spring.mvc.model.BorderInsertModel;
 import com.spring.mvc.model.beans.BorderBean;
 
 public class MyBatisBorderDAOImpl implements MyBatisBorderDAO{
@@ -20,5 +21,11 @@ public class MyBatisBorderDAOImpl implements MyBatisBorderDAO{
 	@Override
 	public BorderBean getBorderDtl(int border_code) {
 		return session.selectOne(NAME_SPACE + "getBorderList",border_code) ;
+	}
+	@Override
+	public Integer insertBorder(BorderBean borderBean) {
+		// TODO Auto-generated method stub
+		return session.insert(NAME_SPACE + ".insertBorder", borderBean);
+		
 	}
 }

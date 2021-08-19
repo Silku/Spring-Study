@@ -40,12 +40,15 @@
                         <tr>
                             <th>첨부파일</th>
                             <td colspan="3">
+                            <a download href="C:/스프링 프로젝트 파일업로드/${borderDtlModel.border_tempfile }">${borderDtlModel.border_file }</a>
+                            	<!--  
                             	<c:forTokens var="fileName" items="${borderDtlModel.border_file }" delims="," varStatus="st">
-                            		<a download href="upload/${fileName }">${fileName }</a>
+                            		<a download href="C:/스프링 프로젝트 파일업로드/${borderDtlModel.border_file }">${fileName }</a>
                             		<c:if test="${not st.last }">
                             		/
                             		</c:if>
                             	</c:forTokens>
+                            	-->
                             </td>
                         </tr>
                     </table>
