@@ -12,14 +12,11 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/border.css"/>
-
-    
+    <link rel="stylesheet" href="/css/border.css" />
 </head>
 <body>
-	
     <div id="container">
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+    	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
         <main>
             <article class="border_contain">
                 <div class="border_header"><h1><i class="fas fa-align-left" id="border_icon"></i> 게 시 글</h1></div>
@@ -55,7 +52,7 @@
                         
                     </table>
                 </div>
-                 
+                
                 <div class="border_footer">
                     <div class="this_page">
                         <span>${borderModel.page }</span> / <span>${borderModel.totalPage }</span> pages
@@ -84,7 +81,6 @@
                     </div>
                     
                 </div>
-				
             </article>
         </main>
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

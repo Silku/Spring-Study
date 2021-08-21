@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/border.css"/>
-    <link rel="stylesheet" href="/css/borderdtl.css"/>
+    <link rel="stylesheet" href="/css/border.css" />
+    <link rel="stylesheet" href="/css/borderdtl.css" />
 </head>
 <body>
     <div id="container">
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+    	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
         <main>
             <article class="border_contain">
                 <div class="border_header"><h1><i class="fas fa-align-left" id="border_icon"></i> 게 시 글</h1></div>
@@ -40,38 +40,37 @@
                         <tr>
                             <th>첨부파일</th>
                             <td colspan="3">
-                            <a download href="C:/스프링 프로젝트 파일업로드/${borderDtlModel.border_tempfile }">${borderDtlModel.border_file }</a>
-                            	<!--  
-                            	<c:forTokens var="fileName" items="${borderDtlModel.border_file }" delims="," varStatus="st">
-                            		<a download href="C:/스프링 프로젝트 파일업로드/${borderDtlModel.border_file }">${fileName }</a>
+                            	<c:forEach var="fileName" items="${borderDtlModel.fileName }" varStatus="st">
+                            		<a href="/fileDownload?originName=${fileName.originName }&tempName=${fileName.tempName}">${fileName.originName }</a>
                             		<c:if test="${not st.last }">
                             		/
                             		</c:if>
-                            	</c:forTokens>
-                            	-->
+                            	</c:forEach>
+                 
                             </td>
                         </tr>
                     </table>
                     <pre class="border_content">${borderDtlModel.border_content }</pre>
-                    
                     <div class="border_button">
                         <button onclick="location.href='/borderp?page=${borderDtlModel.page }'">목록</button>
                     </div>
                     <table class="borderDtl_table">
                         <tr>
                             <th>이전글</th>
-                            <td class="footer_td"><a href="/borderdtl?border_code=${borderDtlModel.border_code_pre}&page=${borderDtlModel.page }">${borderDtlModel.border_title_pre }</a></td>
+                            <td class="footer_td"><a href="/borderdtl?border_code=${borderDtlModel.border_code_pre }&page=${borderDtlModel.page }">${borderDtlModel.border_title_pre }</a></td>
                         </tr>
                         <tr>
                             <th>다음글</th>
                             <td class="footer_td"><a href="/borderdtl?border_code=${borderDtlModel.border_code_next }&page=${borderDtlModel.page }">${borderDtlModel.border_title_next }</a></td>
                         </tr>
                     </table>
-                 
                 </div>
             </article>
         </main>
-       	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+        <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
     </div>
 </body>
 </html>
+
+
+

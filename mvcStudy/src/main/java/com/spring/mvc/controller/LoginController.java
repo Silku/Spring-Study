@@ -23,7 +23,7 @@ public class LoginController {
 	@Autowired
 	private LoginDAO loginDAO;
 	
-	@RequestMapping(value ="/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginIndex(HttpServletRequest request) {
 		ModelAndView mav;
 		
@@ -31,38 +31,46 @@ public class LoginController {
 		UserBean loginUserBean = (UserBean)session.getAttribute("userBean");
 		if(loginUserBean != null) {
 			mav = new ModelAndView("/index");
-		}else {
+		}
+		else{
 			mav = new ModelAndView("/login/login");
-//			mav.setViewName("login/login");
 			LoginModel loginmodel = loginService.getLoginModel();
 			mav.addObject("loginmodel", loginmodel);
 		}
 		return mav;
 	}
 	
-	@RequestMapping(value ="/loginCheck", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
 	public ModelAndView loginCheck(LoginModel loginModel, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
 		int flag = loginDAO.loginCheck(loginModel);
 		if(flag == 1) {
 			ModelAndView mavLoginSuccess = new ModelAndView("/index");
-			UserBean userbean = loginDAO.getUserBean(loginModel);
-			session.setAttribute("loginUserBean", userbean);
-			System.out.println("상태확인 : 로그인성공 " +"'"+ userbean.getUser_name()+"'");
+			UserBean userBean = loginDAO.getUserBean(loginModel);
+			session.setAttribute("loginUserBean", userBean);
 			return mavLoginSuccess;
 		}else {
 			ModelAndView mavLoginFailure = new ModelAndView("/login/login");
-			System.out.println("상태확인 : 로그인실패 ");
 			return mavLoginFailure;
 		}
 	}
-	@RequestMapping(value ="/logout", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		ModelAndView view = new ModelAndView("/index");
 		return view;
 	}
-	
 }
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
-	<!-- xml:beans랑 schemaLocation 주소랑 다시 정의해서 bean를 다시 쓸수도있따! -->
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -20,44 +20,43 @@
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
-		
 		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
-		<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="52428800"></beans:property>
-		<!-- 최대 업로드 가능한 바이트 크기, -1의 값은 제한이 없음을 의미, 기본값 -1 반환자료형은 long -->
-		<beans:property name="maxInMemorySize" value="52428800"></beans:property>
-		<!-- 디스크에 임시파일을 생성하기 전에 메모리에 보관할수 있는 최대 바이트 크기, 기본값은 1MB -->
 	</beans:bean>
 	
 	<context:component-scan base-package="com.spring.mvc" />
 	
-
-	<!--
-	위에있는 컴포넌트 스캔이 컨트롤러에 있는 StudentDAO studentDAO;라고 명명된 new없는 희한한 문법의 객체를 생성하는 역할을 담당.
-	아래의 소스코드를를 위에 있는 context:component-scan....의 코드한줄이 아래의 id = studentDao를 생성함. 
-	그리고 dao.stuentDAO에 있는 어노테이션 autowired 부분에서 아래 소스코드를 실행해주는 역할을 함.
-	<beans:bean id ="studentDao" class="com.spring.mvc.dao.StudentDAO">
-		<beans:property name="dataSource" ref="dataSource"></beans:property>
-	</beans:bean>
-	 -->
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name ="driverClassName" value="org.gjt.mm.mysql.Driver"></beans:property>
-		<beans:property name ="url" value="jdbc:mysql://localhost:3306/springstudy?serverTimezone=UTC"></beans:property>
-		<beans:property name ="username" value="root"></beans:property>
-		<beans:property name ="password" value="1234"></beans:property>
+		<beans:property name="driverClassName" value="org.gjt.mm.mysql.Driver"></beans:property>
+		<beans:property name="url" value="jdbc:mysql://localhost:3306/springstudy?serverTimezone=UTC"></beans:property>
+		<beans:property name="username" value="root"></beans:property>
+		<beans:property name="password" value="1234"></beans:property>
 	</beans:bean>
 	
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<beans:property name ="dataSource" ref="dataSource"></beans:property>
-		<beans:property name="mapperLocations" value="classpath:mappers/*"></beans:property>
-										<!--앞으로는 src/main/resources/mappers 폴더에 mapper파일들을 넣는다 -->
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="mapperLocations" value="classpath:mappers/*.xml"></beans:property>
 	</beans:bean>
+	
 	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg ref="sqlSessionFactory"></beans:constructor-arg>
-		<!-- sql세션템플릿은 property는(세터는 사용불가능하고) 생성자 주입만 가능하다 -->
 	</beans:bean>
-	<beans:bean class = "org.mybatis.spring.mapper.MapperScannerConfigurer">
+	
+	<beans:bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<beans:property name="basePackage" value="com.spring.mvc.dao"></beans:property>
-	</beans:bean>	
+	</beans:bean>
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800"></beans:property>
+		<!-- 최대 업로드 가능한 바이트 크기, -1의 값은 제한이 없을 의미, 기본값 -1 반환 자료형 long-->
+		<beans:property name="maxInMemorySize" value="52428800"></beans:property>
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할 수 있는 최대 바이트 크기, 기본 값은 1MB -->
+	</beans:bean>
+	
 </beans:beans>
+
+
+
+
+
+
+

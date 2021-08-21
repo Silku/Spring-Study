@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>${modelEx.msg }</h2>
-	<h3>단일 모델 페이지</h3>
+	<h2>${modelEx }</h2>
 </body>
 </html>

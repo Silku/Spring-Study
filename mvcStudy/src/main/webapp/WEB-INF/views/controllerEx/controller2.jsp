@@ -8,6 +8,5 @@
 </head>
 <body>
 	<h2>${model }</h2>
-	<h3>모델 and 뷰 페이지</h3>
 </body>
 </html>

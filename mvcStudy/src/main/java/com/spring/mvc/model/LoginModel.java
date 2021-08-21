@@ -42,4 +42,5 @@ public class LoginModel {
 		this.submit_flag = submit_flag;
 	}
 	
+	
 }

@@ -2,23 +2,22 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>  
+<head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>추가 학생 정보 확인 </h1>
-	<!-- 태그라이브러리/form안에있는 form기능을 쓰겠다 -->
+	<h1>추가 학생 정보 확인</h1>
 		<table>
 			<tr>
 				<td>
 					ID
 				</td>
 				<td>
-					${student.id}
+					${student.id }
 				</td>
 			</tr>
-			<tr>				
+			<tr>
 				<td>
 					NAME
 				</td>
@@ -34,14 +33,6 @@
 					${student.phone }
 				</td>
 			</tr>
-			<tr>
-				<td>
-					당신의 유출된 비밀번호입니다.
-				</td>
-				<td>
-					${student.pwd }
-				</td>
-			</tr>
-		</table>		
+		</table>
 </body>
 </html>

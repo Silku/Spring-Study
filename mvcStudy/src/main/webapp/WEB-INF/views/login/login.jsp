@@ -18,7 +18,7 @@
     <div id="container">
         <div id="login_content">
             <form id="loginform" method="post" action="loginCheck">
-            	<input type="hidden" id="loginflag" name="loginflag" value="${loginModel.login_flag }">
+            	<input type="hidden" id="loginflag" name="login_flag" value="${loginModel.login_flag }">
                 <div class="id_area">
                     <div class="input_row">
                         <span class="input_box">

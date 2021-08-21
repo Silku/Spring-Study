@@ -17,7 +17,8 @@ import com.spring.mvc.model.beans.BorderBean;
 
 /**
  * 
- *DAO(Data Access Object)
+ * DAO(Data Access Object)
+ *
  */
 
 @Repository
@@ -26,11 +27,11 @@ public class BorderDAO {
 	
 	@Autowired
 	public void setJdbcTemplate(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);	
+		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	public ArrayList<BorderBean> getBorderList(){
-		String sql = "select * from border_mst order 	by border_code desc";
+		String sql = "select * from border_mst order by border_code desc";
 		ArrayList<BorderBean> list = (ArrayList<BorderBean>)jdbcTemplate.query(sql, new RowMapper<BorderBean>() {
 			@Override
 			public BorderBean mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -50,69 +51,61 @@ public class BorderDAO {
 	}
 	
 	public void insertBorder(BorderInsertModel borderInsertModel) {
-		String sql = "insert into border_mst values(0,?,?,?,?,?,now(),0,now(),now())";
-		jdbcTemplate.update(sql, 
-								borderInsertModel.getBorder_title(), 
-								borderInsertModel.getContent_textarea(), 
-								borderInsertModel.getFile(),
-								borderInsertModel.getUser_name(),
-								borderInsertModel.getUser_ip());
+		String sql = "insert into border_mst values(0, ?, ?, ?, ?, ?, now(), 0, now(), now())";
+		jdbcTemplate.update(
+				sql, 
+				borderInsertModel.getBorder_title(), 
+				borderInsertModel.getContent_textarea(),
+				borderInsertModel.getFile(), 
+				borderInsertModel.getUser_name(), 
+				borderInsertModel.getUser_ip()
+		);
 	}
 	
 	public BorderBean getBorderDtl(int border_code) {
 		String sql = "select * from border_mst where border_code = ?";
 		BorderBean borderBean = jdbcTemplate.queryForObject(sql, new Object[] {border_code},
 				new RowMapper<BorderBean>() {
-			@Override
-			public BorderBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-				BorderBean bean = new BorderBean();
-				bean.setBorder_code(rs.getInt(1));
-				bean.setBorder_title(rs.getString(2));
-				bean.setBorder_content(rs.getString(3));
-				bean.setBorder_file(rs.getString(4));
-				bean.setWriter_name(rs.getString(5));
-				bean.setWriter_ip(rs.getString(6));
-				bean.setBorder_date(rs.getString(7));
-				bean.setBorder_count(rs.getInt(8));
-				return bean;
-			}
-		});
+					@Override
+					public BorderBean mapRow(ResultSet rs, int rowNum) throws SQLException {
+						BorderBean bean = new BorderBean();
+						bean.setBorder_code(rs.getInt(1));
+						bean.setBorder_title(rs.getString(2));
+						bean.setBorder_content(rs.getString(3));
+						bean.setBorder_file(rs.getString(4));
+						bean.setWriter_name(rs.getString(5));
+						bean.setWriter_ip(rs.getString(6));
+						bean.setBorder_date(rs.getString(7));
+						bean.setBorder_count(rs.getInt(8));
+						return bean;
+					}
+				}
+		);
 		return borderBean;
 	}
 	
-	public BorderBean getPreBoderCode(int border_code) {
-		String sql = "select border_code, border_title from border_mst where border_code =" 
-					+"(select max(border_code) from border_mst where border_code < ?)";
+	public BorderBean getPreBorderCode(int border_code) {
+		String sql = "select border_code, border_title from border_mst where border_code = "
+				+ "(select max(border_code) from border_mst where border_code < ?)";
 		BorderBean borderBean = jdbcTemplate.queryForObject(sql, new Object[] {border_code},
-				//query와 , queryForObject의 차이 query는 컬럼에 있는 데이터 다 들고 오고 ForObject는 오브젝트 하나만 가지고옴
-			new RowMapper<BorderBean>() {
-			@Override
-			public BorderBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-				BorderBean bean = new BorderBean();
-				bean.setBorder_code(rs.getInt(1));
-				bean.setBorder_title(rs.getString(2));
-				return bean;
-			};
-		});
+				new RowMapper<BorderBean>() {
+					@Override
+					public BorderBean mapRow(ResultSet rs, int rowNum) throws SQLException {
+						BorderBean bean = new BorderBean();
+						bean.setBorder_code(rs.getInt(1));
+						bean.setBorder_title(rs.getString(2));
+						return bean;
+					}
+				}
+		);
 		return borderBean;
-				
 	}
-	public BorderBean getNextBoderCode(int border_code) {
-		String sql = "select border_code, border_title from border_mst where border_code =" 
-					+"(select min(border_code) from border_mst where border_code > ?)";
-		BorderBean borderBean = jdbcTemplate.queryForObject(sql, new Object[] {border_code},
-				//query와 , queryForObject의 차이 query는 컬럼에 있는 데이터 다 들고 오고 ForObject는 오브젝트 하나만 가지고옴
-			new RowMapper<BorderBean>() {
-			@Override
-			public BorderBean mapRow(ResultSet rs, int rowNum) throws SQLException {
-				BorderBean bean = new BorderBean();
-				bean.setBorder_code(rs.getInt(1));
-				bean.setBorder_title(rs.getString(2));
-				return bean;
-			};
-		});
-		return borderBean;
-				
-	}
+	
 }
+
+
+
+
+
+
 

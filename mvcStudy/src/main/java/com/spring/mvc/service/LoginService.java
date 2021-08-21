@@ -6,6 +6,7 @@ import com.spring.mvc.model.LoginModel;
 
 @Service
 public class LoginService {
+	
 	public LoginModel getLoginModel() {
 		LoginModel loginModel = new LoginModel();
 		loginModel.setLogin_id("");
